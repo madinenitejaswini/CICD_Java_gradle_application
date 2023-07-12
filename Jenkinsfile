@@ -5,7 +5,6 @@ pipeline{
     }
     stages{
         stage("sonar quality check"){
-            agent any
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
@@ -19,7 +18,6 @@ pipeline{
                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
                       }
                     }
-
                 }  
             }
         }
